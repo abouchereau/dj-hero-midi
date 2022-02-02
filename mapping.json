@@ -1,5 +1,23 @@
 [{
-  "UP_PRESS": [{""}]
+  "comment-1": "Set a list arrays of MIDI messages. 0: Channel (0 to 15), 1: MIDI MSG (8: note off, 9 : note on, 11: CC...), 2: param1, 3: param2)",
+  "UP_PRESS": [{"channel":0,"message":8,"param1":60,"param2":100}],
+  "UP_RELEASE": [{"channel":0,"message":9,"param1":60,"param2":100}],
+  "DOWN_PRESS": [{"channel":0,"message":8,"param1":60,"param2":100}],
+  "DOWN_RELEASE": [{"channel":0,"message":9,"param1":60,"param2":100}],
+  "START_PRESS": [],
+  "START_RELEASE": [],
+  "SELECT_PRESS": [],
+  "BELECT_RELEASE": [],
+  "BTN_CROSS_PRESS": [],
+  "BTN_CROSS_RELEASE": [],
+  "BTN_TRIANGLE_PRESS": [],
+  "BTN_TRIANGLE_RELEASE": [],
+  "BTN_SQUARE_PRESS": [],
+  "BTN_SQUARE_RELEASE": [],
+  "BTN_CIRCLE_PRESS": [],
+  "BTN_CIRCLE_RELEASE": [],
+  "comment-2": "Set a list arrays of MIDI messages. 0: Channel (0 to 15), 1: MIDI MSG (8: note off, 9 : note on, 11: CC...), 2: param1, 3: param2)",
+  "FADER":[{"channel":0,"message":8,"param1":60,"param2min":100,"param2max":100}]
 },
   {
 
