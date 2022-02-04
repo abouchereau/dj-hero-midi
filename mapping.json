@@ -1,13 +1,12 @@
-[{
-  "comment-1": "Set a list arrays of MIDI messages. 0: Channel (0 to 15), 1: MIDI MSG (8: note off, 9 : note on, 11: CC...), 2: param1, 3: param2)",
-  "UP_PRESS": [{"channel":0,"message":8,"param1":60,"param2":100}],
-  "UP_RELEASE": [{"channel":0,"message":9,"param1":60,"param2":100}],
-  "DOWN_PRESS": [{"channel":0,"message":8,"param1":60,"param2":100}],
-  "DOWN_RELEASE": [{"channel":0,"message":9,"param1":60,"param2":100}],
-  "START_PRESS": [],
-  "START_RELEASE": [],
-  "SELECT_PRESS": [],
-  "BELECT_RELEASE": [],
+[
+  {
+  "comment0": "Set a list arrays of MIDI messages. 0: Channel (0 to 15), 1: MIDI MSG (8: note off, 9 : note on, 11: CC...), 2: param1, 3: param2)",
+  "comment1": "UP and DOWN = switch channel from 0 to 15 (default:0)",
+  "comment2": "LEFT AND RIGHT : select config",
+  "START_PRESS": [{"message":8,"param1":60,"param2": 100},{"message":8,"param1":64,"param2": 100}],
+  "START_RELEASE": [{"message":9,"param1":60,"param2": 100},{"message":9,"param1":64,"param2": 100}],
+  "SELECT_PRESS": [{"message":8,"param1":67,"param2": 100},{"message":8,"param1":72,"param2": 100}],
+  "BELECT_RELEASE": [{"message":8,"param1":67,"param2": 100},{"message":8,"param1":72,"param2": 100}],
   "BTN_CROSS_PRESS": [],
   "BTN_CROSS_RELEASE": [],
   "BTN_TRIANGLE_PRESS": [],
@@ -16,9 +15,23 @@
   "BTN_SQUARE_RELEASE": [],
   "BTN_CIRCLE_PRESS": [],
   "BTN_CIRCLE_RELEASE": [],
-  "comment-2": "Set a list arrays of MIDI messages. 0: Channel (0 to 15), 1: MIDI MSG (8: note off, 9 : note on, 11: CC...), 2: param1, 3: param2)",
-  "FADER":[{"channel":0,"message":8,"param1":60,"param2min":100,"param2max":100}]
+  "comment3": "Home button depending on knob position(1, 2, 3 or 4)",
+  "HOME1_PRESS": [{"message":11,"param1":103,"param2":50},{"message":11,"param1":116,"param2":127},{"message":11,"param1":119,"param2":10},{"message":11,"param1":117,"param2":127},{"message":11,"param1":118,"param2":127}],
+  "HOME1_RELEASE": [],
+  "HOME2_PRESS": [{"message":11,"param1":103,"param2":20},{"message":11,"param1":116,"param2":0},{"message":11,"param1":119,"param2":11},{"message":11,"param1":117,"param2":114},{"message":11,"param1":118,"param2":127}],
+  "HOME2_RELEASE": [],
+  "HOME3_PRESS": [{"message":11,"param1":103,"param2":20},{"message":11,"param1":116,"param2":127},{"message":11,"param1":119,"param2":18},{"message":11,"param1":117,"param2":23},{"message":11,"param1":118,"param2":0}],
+  "HOME3_RELEASE": [],
+  "HOME4_PRESS": [{"message":11,"param1":103,"param2":20},{"message":11,"param1":116,"param2":127},{"message":11,"param1":119,"param2":10},{"message":11,"param1":117,"param2":88},{"message":11,"param1":118,"param2":60}],
+  "HOME4_RELEASE": [],
+  "comment4": "Set a list arrays of MIDI messages. 0: Channel (0 to 15), 1: MIDI MSG (8: note off, 9 : note on, 11: CC...), 2: param1, 3: param2)",
+  "FADER":[{"message":11,"param1":103,"param2min":0,"param2max":50}],
+  "DISC_ONLY":[{"message":11,"param1":23,"param2min":25,"param2max":60}],
+  "DISC_BLUE":[{"message":11,"param1":26,"param2min":0,"param2max":127}],
+  "DISC_RED":[{"message":11,"param1":28,"param2min":0,"param2max":127}],
+  "DISC_GREEN":[{"message":11,"param1":24,"param2min":56,"param2max":80}]
 },
   {
-
-}]
+    "comment": "Add more configs here..."
+  }
+]
