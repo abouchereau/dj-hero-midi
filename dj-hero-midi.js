@@ -1,5 +1,6 @@
 const readline = require('readline');
 const MidiNode = require("./lib/MidiNode");
+const Manager = require("./lib/Manager");
 const DeviceDJHeroPS = require("./lib/DeviceDJHeroPS");
 const yargs = require('yargs');
 
@@ -24,7 +25,11 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+let midiNode = new MidiNode();
+midiNode.scanOutput();
+
 if (typeof argv.midiOutputName == "string") {
+    midiNode.openFromName(midiOutName);
     start(argv.midiOutputName);
 }
 else {
@@ -38,16 +43,12 @@ else {
     });
 }
 
-function start(midiOutName) {
-    midiNode.openFromName(midiOutName);
-    let deviceDJHero = new DeviceDJHeroPS(volca);
-    deviceDJHero.init();
-    deviceArcadeJoystick.init();
-    let midiPlayer = new MidiPlayer(volca);
-    let tryNextMidiDevice = true;
-    while(tryNextMidiDevice) {
-        let midiInput = new MidiInput(volca);
-        tryNextMidiDevice = midiInput.openNextDevice();
+function start() {
+    let defaultChannel = 0;
+    if (typeof argv.defaultMidiChannel == "number") {
+        defaultChannel = argv.defaultMidiChannel;
     }
-    //
+    let manager = new Manager(defaultChannel);
+    let deviceDJHero = new DeviceDJHeroPS(manager);
+    deviceDJHero.init();
 }
