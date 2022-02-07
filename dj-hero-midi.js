@@ -48,7 +48,7 @@ function start() {
     if (typeof argv.defaultMidiChannel == "number") {
         defaultChannel = argv.defaultMidiChannel;
     }
-    let manager = new Manager(defaultChannel);
+    let manager = new Manager(midiNode, defaultChannel);
     let deviceDJHero = new DeviceDJHeroPS(manager);
     deviceDJHero.init();
 }
