@@ -2,7 +2,9 @@ const readline = require('readline');
 const MidiNode = require("./lib/MidiNode");
 const Manager = require("./lib/Manager");
 const DeviceDJHeroPS = require("./lib/DeviceDJHeroPS");
+const DeviceDJHeroXbox = require("./lib/DeviceDJHeroXbox");
 const yargs = require('yargs');
+const HID = require('node-hid');
 
 const argv = yargs
     .option("midiOutputName", {
@@ -14,11 +16,7 @@ const argv = yargs
         alias: "c",
         describe: "Default Midi Channel (0-15). Default : 0",
         type:'number'})
-    .option("defaultSettingIndex", {
-        alias: "s",
-        describe: "Default Setting Index. Default : 0",
-        type:'number'
-    }).argv;
+    .argv;
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -30,16 +28,15 @@ midiNode.scanOutput();
 
 if (typeof argv.midiOutputName == "string") {
     midiNode.openFromName(midiOutName);
-    start(argv.midiOutputName);
+    start();
 }
 else {
     rl.question("=> Choose MIDI Output (default: " + midiNode.DEFAULT_MIDI_INDEX + ") : ", paramMidiIndex => {
-        let midiOutIndex = midiNode.DEFAULT_MIDI_INDEX;
         if (paramMidiIndex == null || paramMidiIndex == "" || parseInt(paramMidiIndex) > (midiNode.nbMidiDevices - 1)) {
-            rl.question("=> Bad index for MIDI Output", a => process.exit());
+            rl.question("=> Bad index for MIDI Output", process.exit);
         }
-        midiOutIndex = parseInt(paramMidiIndex);
-        start(midiOutIndex);
+        midiNode.openFromIndex(parseInt(paramMidiIndex));
+        start();
     });
 }
 
@@ -49,6 +46,23 @@ function start() {
         defaultChannel = argv.defaultMidiChannel;
     }
     let manager = new Manager(midiNode, defaultChannel);
-    let deviceDJHero = new DeviceDJHeroPS(manager);
-    deviceDJHero.init();
+
+    //automatic detection
+    let devices = HID.devices();
+    let oneConnected = false;
+    for (let device of devices) {
+        if (device.vendorId == DeviceDJHeroPS.VENDOR_ID && device.productId == DeviceDJHeroPS.PRODUCT_ID) {
+            let deviceDJHeroPS = new DeviceDJHeroPS(manager);
+            deviceDJHeroPS.init();
+            oneConnected = true;
+        }
+        if (device.vendorId == DeviceDJHeroXbox.VENDOR_ID && device.productId == DeviceDJHeroXbox.PRODUCT_ID) {
+            let deviceDJHeroXbox = new DeviceDJHeroXbox(manager);
+            deviceDJHeroXbox.init();
+            oneConnected = true;
+        }
+    }
+    if (!oneConnected) {
+        console.log("No DJ Hero detected :(");
+    }
 }
