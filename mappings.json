@@ -26,7 +26,7 @@
   "HOME4_RELEASE": [],
   "comment4": "Set message (generally 11=CC) for fader and disc with min and max limit values",
   "FADER":[{"message":11,"param1":103,"param2min":0,"param2max":50}],
-  "DISC_ONLY":[{"message":11,"param1":23,"param2min":25,"param2max":60}],
+  "DISC_ONLY":[{"message":11,"param1":1,"param2min":0,"param2max":127}],
   "DISC_BLUE":[{"message":11,"param1":26,"param2min":0,"param2max":127}],
   "DISC_RED":[{"message":11,"param1":28,"param2min":0,"param2max":127}],
   "DISC_GREEN":[{"message":11,"param1":24,"param2min":56,"param2max":80}]
