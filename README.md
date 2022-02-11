@@ -10,7 +10,7 @@ Use DJ Hero Turntable as MIDI Controller
 
 ## Installation
 
-`npm install node-hid fs midi yargs readline nanotimer`
+`npm install node-hid fs midi yargs readline nanotimer node-xboxdrv`
 
 ## Usage
 `sudo node dj-hero-midi.js`

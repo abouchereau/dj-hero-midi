@@ -46,7 +46,7 @@ function start() {
         defaultChannel = argv.defaultMidiChannel;
     }
     let manager = new Manager(midiNode, defaultChannel);
-
+/*
     //automatic detection
     let devices = HID.devices();
     let oneConnected = false;
@@ -57,12 +57,13 @@ function start() {
             oneConnected = true;
         }
         if (device.vendorId == DeviceDJHeroXbox.VENDOR_ID && device.productId == DeviceDJHeroXbox.PRODUCT_ID) {
-            let deviceDJHeroXbox = new DeviceDJHeroXbox(manager);
-            deviceDJHeroXbox.init();
-            oneConnected = true;
+
         }
-    }
+    }*/
+    let deviceDJHeroXbox = new DeviceDJHeroXbox(manager);
+    deviceDJHeroXbox.init();
+ /*   oneConnected = true;
     if (!oneConnected) {
         console.log("No DJ Hero detected :(");
-    }
+    }*/
 }
